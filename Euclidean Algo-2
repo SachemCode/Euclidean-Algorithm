@@ -1,0 +1,81 @@
+class EuclideanAlgorithm:
+    """
+    A class to compute the Greatest Common Divisor (GCD) of two numbers
+    using the Euclidean Algorithm.
+    """
+    
+    def __init__(self):
+        """Initialize the EuclideanAlgorithm class."""
+        pass
+    
+    def calculate_gcd(self, a: int, b: int) -> int:
+        """
+        Calculate the GCD of two positive integers using the Euclidean Algorithm.
+        
+        Args:
+            a (int): First positive integer.
+            b (int): Second positive integer.
+        
+        Returns:
+            int: The GCD of a and b.
+        
+        Raises:
+            ValueError: If inputs are not positive integers.
+        """
+        # Validate inputs
+        if not isinstance(a, int) or not isinstance(b, int):
+            raise ValueError("Inputs must be integers.")
+        if a <= 0 or b <= 0:
+            raise ValueError("Inputs must be positive integers.")
+        
+        # Euclidean Algorithm
+        while b != 0:
+            remainder = a % b
+            a = b
+            b = remainder
+        
+        return a
+
+def get_user_input() -> tuple:
+    """
+    Prompt the user for two positive integers and validate the input.
+    
+    Returns:
+        tuple: A tuple of two positive integers (a, b).
+    
+    Raises:
+        ValueError: If inputs are not valid positive integers.
+    """
+    try:
+        a = input("Enter the first positive integer: ").strip()
+        b = input("Enter the second positive integer: ").strip()
+        
+        # Convert inputs to integers
+        a = int(a)
+        b = int(b)
+        
+        return a, b
+    except ValueError:
+        raise ValueError("Invalid input: Please enter positive integers.")
+
+if __name__ == "__main__":
+    euclid = EuclideanAlgorithm()
+    
+    while True:
+        try:
+            # Get user input
+            a, b = get_user_input()
+            
+            # Calculate GCD
+            result = euclid.calculate_gcd(a, b)
+            print(f"GCD of {a} and {b} is {result}")
+            
+            # Ask if user wants to continue
+            continue_choice = input("Do you want to calculate another GCD? (yes/no): ").strip().lower()
+            if continue_choice != 'yes':
+                print("Exiting program.")
+                break
+                
+        except ValueError as e:
+            print(f"Error: {e}")
+            print("Please try again.")
