@@ -1,0 +1,41 @@
+# Euclidean-Algorithm
+@author: jamesngatia
+"""
+
+class EuclideanAlgorithm:
+    """
+    A class to compute the Greatest Common Divisor (GCD) of two numbers
+    using the Euclidean Algorithm.
+    """
+    
+    def __init__(self):
+        """Initialize the EuclideanAlgorithm class."""
+        pass
+    
+    def calculate_gcd(self, a: int, b: int) -> int:
+        """
+        Calculate the GCD of two positive integers using the Euclidean Algorithm.
+        
+        Args:
+            a (int): First positive integer.
+            b (int): Second positive integer.
+        
+        Returns:
+            int: The GCD of a and b, or raises an exception for invalid inputs.
+        
+        Raises:
+            ValueError: If inputs are not positive integers.
+        """
+        # Validate inputs
+        if not isinstance(a, int) or not isinstance(b, int):
+            raise ValueError("Inputs must be integers.")
+        if a <= 0 or b <= 0:
+            raise ValueError("Inputs must be positive integers.")
+        
+        # Euclidean Algorithm
+        while b != 0:
+            remainder = a % b
+            a = b
+            b = remainder
+        
+        return a
